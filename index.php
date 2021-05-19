@@ -69,6 +69,7 @@
 
 <script src="js/sweetalert2.all.min.js"></script>
 
-
-</body>
-</html>
+<?php 
+   include 'inc/templates/headfooter.php';
+   
+?>

@@ -1,4 +1,4 @@
-<!<?php 
+<?php 
    include 'inc/funciones/funciones.php';
    include 'inc/templates/header.php';
 ?>
@@ -26,6 +26,8 @@
 
     <script src="js/sweetalert2.all.min.js"></script>
 
+    <?php 
+   include 'inc/templates/footer.php';
+   
+?>
 
-</body>
-</html>
