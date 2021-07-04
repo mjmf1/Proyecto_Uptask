@@ -30,7 +30,7 @@ function validarRegistro(e) {
            datos.append('password', password);
            datos.append('accion', tipo);
 
-           //console.log(datos.get('usuario'));
+           console.log(...datos);
 
            //crear el llamado ajax
            var xhr = new XMLHttpRequest();
@@ -39,9 +39,11 @@ function validarRegistro(e) {
            xhr.open('POST', 'inc/modelos/modelos-admin.php', true);
 
            //retorno de datos
+           //console.log(datos);
            xhr.onload= function(){ 
              if(this.status === 200){
                console.log(JSON.parse(xhr.responseText));
+
              }
            }
            //enviar la peticion
