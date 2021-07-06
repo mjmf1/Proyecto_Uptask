@@ -14,18 +14,43 @@
      );
      $hash_password = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
-     $respuesta = array(
-        'pass' => $hash_password
-     );
-    
+     //importar conexion 
+     include '../funciones/conexion.php';
+
+     try {
+         //realizar la consulta  a la base de datos 
+         $stmt = $conn->prepare("INSERT INTO usuarios (usuario, password) VALUES (?, ?) ");
+         $stmt -> bind_param('ss', $usuario, $hash_password);
+         $stmt ->  execute();
+         if($stmt->affected_rows){
+            $respuesta = array(
+                'respuesta' => 'correcto',
+                'id_insertado' => $stmt->insert_id,
+                 'tipo' => $accion
+                // mostrar errores 
+               /* $stmt->error_list,
+                'error' => $stmt->error*/
+            );
+
+         }
+        
+         $stmt ->  close();
+         $conn -> close();
+
+     } catch (exception $e) {
+         //en caso de error .. tomar la exepcion
+         $respuesta = array(
+            'pass' => $e->getMessage()
+         );
+     }
+
     echo json_encode($respuesta);
  }
 
  if($accion === 'login'){
 //     //escribir codigo que logee a los admin
-//echo json_encode($_POST);
+
  }
 
- //echo json_encode($_POST);
  
 ?>

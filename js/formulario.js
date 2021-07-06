@@ -30,7 +30,7 @@ function validarRegistro(e) {
            datos.append('password', password);
            datos.append('accion', tipo);
 
-           console.log(...datos);
+           //console.log(...datos);
 
            //crear el llamado ajax
            var xhr = new XMLHttpRequest();
