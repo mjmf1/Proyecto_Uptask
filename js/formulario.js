@@ -42,7 +42,36 @@ function validarRegistro(e) {
            //console.log(datos);
            xhr.onload= function(){ 
              if(this.status === 200){
-               console.log(JSON.parse(xhr.responseText));
+               var respuesta = JSON.parse(xhr.responseText);
+
+               //si la respuesta es correcta 
+               if(respuesta.respuesta === 'correcto'){
+                 //si es un usuario nuevo 
+                 if(respuesta.tipo === 'crear'){
+                  Swal.fire(
+                    'Usuario Creado!',
+                    'El usuario fue creado correctamente',
+                    'success'
+                  );
+
+                   
+                 }else{
+                  Swal.fire(
+                    'Usuario Creado!',
+                    'El usuario fue creado correctamente',
+                    'success'
+                  );
+
+                   //hubo un error
+                   /*Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'hubo un error!',
+                    type: 'error'
+                    
+                  });*/
+                 }
+               }
 
              }
            }

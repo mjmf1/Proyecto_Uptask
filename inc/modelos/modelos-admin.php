@@ -22,7 +22,7 @@
          $stmt = $conn->prepare("INSERT INTO usuarios (usuario, password) VALUES (?, ?) ");
          $stmt -> bind_param('ss', $usuario, $hash_password);
          $stmt ->  execute();
-         if($stmt->affected_rows){
+         if(0==1){
             $respuesta = array(
                 'respuesta' => 'correcto',
                 'id_insertado' => $stmt->insert_id,
@@ -31,7 +31,10 @@
                /* $stmt->error_list,
                 'error' => $stmt->error*/
             );
-
+         } else{
+           $respuesta = array(
+             'respuesta' => 'error'
+           );
          }
         
          $stmt ->  close();
