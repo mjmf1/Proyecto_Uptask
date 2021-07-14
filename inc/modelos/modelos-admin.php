@@ -1,5 +1,5 @@
 <?php
-//die(json_encode($_POST));
+die(json_encode($_POST));
 
  $accion = $_POST['accion'];
  $password = $_POST['password'];

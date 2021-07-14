@@ -1,82 +1,70 @@
 EventListener();
 
-function EventListener (){
-    document.querySelector('#formulario').addEventListener('submit', validarRegistro);
+function EventListener() {
+  document
+    .querySelector("#formulario")
+    .addEventListener("submit", validarRegistro);
 }
 
 function validarRegistro(e) {
-    e.preventDefault();
-    
-    var usuario = document.querySelector('#usuario').value,
-        password = document.querySelector('#password').value,
-        tipo = document.querySelector('#tipo').value;
+  e.preventDefault();
 
-        //console.log(usuario + " " + password); // comprobacion de envio formulario
+  var usuario = document.querySelector("#usuario").value,
+    password = document.querySelector("#password").value,
+    tipo = document.querySelector("#tipo").value;
 
-        if(usuario === '' || password === ''){
-          // la validacion fallo
-            Swal({
-                type: 'error',
-                title: 'error...',
-                text: 'Ambos campos son obligatorios!',
-                //footer: '<a href="">Why do I have this issue?</a>'
-              })
-        }else{
-           // ambos campos son correctos ejecutar ajax
+  //console.log(usuario + " " + password); // comprobacion de envio formulario
 
-           //datos que se envian al servidor
-           var datos = new FormData();
-           datos.append('usuario', usuario);
-           datos.append('password', password);
-           datos.append('accion', tipo);
+  if (usuario === "" || password === "") {
+    // la validacion fallo
+    Swal({
+      type: "error",
+      title: "error...",
+      text: "Ambos campos son obligatorios!",
+      //footer: '<a href="">Why do I have this issue?</a>'
+    });
+  } else {
+    // ambos campos son correctos ejecutar ajax
 
-           //console.log(...datos);
+    //datos que se envian al servidor
+    var datos = new FormData();
+    datos.append("usuario", usuario);
+    datos.append("password", password);
+    datos.append("accion", tipo);
 
-           //crear el llamado ajax
-           var xhr = new XMLHttpRequest();
+    //console.log(...datos);
 
-           // abrir la conexion
-           xhr.open('POST', 'inc/modelos/modelos-admin.php', true);
+    //crear el llamado ajax
+    var xhr = new XMLHttpRequest();
 
-           //retorno de datos
-           //console.log(datos);
-           xhr.onload= function(){ 
-             if(this.status === 200){
-               var respuesta = JSON.parse(xhr.responseText);
+    // abrir la conexion
+    xhr.open("POST", "inc/modelos/modelos-admin.php", true);
 
-               //si la respuesta es correcta 
-               if(respuesta.respuesta === 'correcto'){
-                 //si es un usuario nuevo 
-                 if(respuesta.tipo === 'crear'){
-                  Swal.fire(
-                    'Usuario Creado!',
-                    'El usuario fue creado correctamente',
-                    'success'
-                  );
+    //retorno de datos
+    //console.log(datos);
+    xhr.onload = function () {
+      if (this.status === 200) {
+        var respuesta = JSON.parse(xhr.responseText);
 
-                   
-                 }else{
-                  Swal.fire(
-                    'Usuario Creado!',
-                    'El usuario fue creado correctamente',
-                    'success'
-                  );
-
-                   //hubo un error
-                   /*Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'hubo un error!',
-                    type: 'error'
-                    
-                  });*/
-                 }
-               }
-
-             }
-           }
-           //enviar la peticion
-           xhr.send(datos);
+        //si la respuesta es correcta
+        if (respuesta.respuesta === "correcto") {
+          //si es un usuario nuevo
+        } else if (respuesta.tipo === "crear") {
+          Swal.fire(
+            "Usuario Creado!",
+            "El usuario fue creado correctamente",
+            "success"
+          );
+        } else {
+          Swal.fire(
+            "Usuario Creado!",
+            "El usuario fue creado correctamente",
+            "success"
+          );
         }
-
+      }
+    };
+    //enviar la peticion
+    xhr.send(datos);
+  }
 }
