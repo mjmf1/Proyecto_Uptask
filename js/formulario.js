@@ -111,7 +111,7 @@ function validarRegistro(e) {
             var xhr = new XMLHttpRequest();
             
             // abrir la conexión.
-            xhr.open('POST', 'inc/modelos/modelo-admin.php', true);
+            xhr.open('POST', 'inc/modelos/modelos-admin.php', true);
             
             // retorno de datos
             xhr.onload = function(){
