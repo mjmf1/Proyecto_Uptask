@@ -33,5 +33,13 @@ function nuevoProyecto(e){
 }
 
 function guardaProyectosDB(nombreProyecto){
-    console.log(nombreProyecto);
+   // console.log(nombreProyecto);
+   //inyectar el html
+   let nuevoProyecto = document.createElement('li');
+   nuevoProyecto.innerHTML = `
+    <a href="#">
+        ${nombreProyecto}
+    </a>
+   `;
+    listaProyectos.appendChild(nuevoProyecto);
 }
