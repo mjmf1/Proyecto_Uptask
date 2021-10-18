@@ -62,7 +62,7 @@ function guardaProyectosDB(nombreProyecto){
                     //inyectar en el html
                     let nuevoProyecto = document.createElement('li');
                     nuevoProyecto.innerHTML = `
-                    <a href="index.php?id_respuesta=${id_proyecto}" id="${id_proyecto}">
+                    <a href="index.php?id_proyecto=${id_proyecto}" id="${id_proyecto}">
                         ${proyecto}
                     </a>
                     `;
