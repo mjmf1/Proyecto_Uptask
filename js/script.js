@@ -127,7 +127,7 @@ function agregarTarea(e) {
      // datos que se envian al servidor
      var datos = new FormData();
      datos.append('tarea', nombreTarea);
-     datos.append('tipo', 'crear');
+     datos.append('accion', 'crear');
      datos.append('id_proyecto', document.querySelector('#id_proyecto').value);
 
     // abrir la conexión.
