@@ -138,6 +138,61 @@ function agregarTarea(e) {
         if(this.status === 200) {
             var respuesta = JSON.parse(xhr.responseText);
             console.log(respuesta);
+
+            //asignar valore
+            let resultado = respuesta.respuesta,
+                  tarea = respuesta.tarea,
+                  id_insertado = respuesta.id_insertado,
+                  tipo = respuesta.tipo;
+
+            if(respuesta.respuesta === 'correcto'){
+              //se agrego correctamente
+              if(tipo === 'crear'){
+                //lanzar alerta
+                swal({
+                  title: 'tarea creada',
+                  text: 'la tarea: ' + tarea + ' fue creada correctamente', 
+                  type: 'success'
+              });
+              // construir el template
+
+              let nuevaTarea = document.createElement('li');
+
+              //agregar el ID
+
+              nuevaTarea.id = 'tarea:' + id_insertado;
+
+              // agregr la clase de la tarea
+
+              nuevaTarea.classList.add('tarea');
+
+              //construir el html
+
+              nuevaTarea.innerHTML = `
+                <p>${tarea}</p>
+                <div class="acciones">
+                    <i class="far fa-check-circle"></i>
+                    <i class="fas fa-trash"></i>
+                </div>
+              `;
+
+              // agregar el html
+              let listado = document.querySelector('.listado-pendientes ul');
+              listado.appendChild(nuevaTarea);
+
+              //limpiar el formulario
+              document.querySelector('.agregar-tarea').reset();
+
+              }
+            }else{
+              //hubo un error
+              
+              swal({
+                title: 'Error',
+                text: 'Hubo un error',
+                type: 'error'
+            });
+            }
         }
     }
         // Enviar la petición
